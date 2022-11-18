@@ -2,8 +2,7 @@ const { error } = require('console');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const item = require('../models/item');
- 
+
 const Item = require('../models/item');
 
 
@@ -20,13 +19,12 @@ router.post('/itemPost' , (req,res) => {
     .then(result => {
         res.status(201).json({
             message: 'Item Created' ,
-            createdItem: Itemproduct
+            createdItem: result
         })
     })
     .catch(error => {
         console.log(error)
-        res.status(400).json({Error:error
-        })
+        res.status(400).json({Error:error})
     })
 })
 
@@ -62,7 +60,9 @@ router.get('/itemsFetch' , (req,res) => {
     })
 
  })
+  
 
+ // will have to update this.
   router.patch('/:_id' , (req,res) => {
     const itemId = req.params._id;
     const updateOps = {};
